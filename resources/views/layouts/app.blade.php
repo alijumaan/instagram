@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="ar" dir="rtl">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,20 +9,20 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-
-
     <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/droidarabickufi.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-rtl.css') }}">
+    @yield('style')
+
 </head>
-<body>
-<div id="app">
+<body class="bg-light">
 
+<div class="container-fluid">
     @include('partial.header')
-
     <main class="py-4">
         <div class="container">
             <div class="row justify-content-center">
@@ -43,5 +43,6 @@
 </div>
 <!-- Scripts -->
 <script src="{{ asset('js/app.js') }}" defer></script>
+@yield('script')
 </body>
 </html>
