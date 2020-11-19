@@ -1,39 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Frontend;
 
+use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
+
 
 class UserController extends Controller
 {
-
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
-
-    public function store(Request $request)
-    {
-        //
-    }
-
-
-    public function show($id)
-    {
-        //
-    }
-
 
     public function edit()
     {
@@ -65,13 +42,13 @@ class UserController extends Controller
         if ($request->hasFile('avatar'))
         {
             if (auth()->user()->avatar != '') {
-                if (File::exists('images/avatar/' . auth()->user()->avatar)) {
-                    unlink('images/avatar/' . auth()->user()->avatar);
+                if (File::exists('images/users/' . auth()->user()->avatar)) {
+                    unlink('images/users/' . auth()->user()->avatar);
                 }
             }
             $file = $request->file('avatar');
             $fileName = time().$file->getClientOriginalName();
-            $file->move(public_path().'/images/avatar/', $fileName);
+            $file->move(public_path().'/images/users/', $fileName);
 
         }
 

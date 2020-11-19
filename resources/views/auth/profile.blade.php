@@ -17,7 +17,7 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <label for="first_name">{{ __('frontend.First Name') }}</label>
-                        <input type="text" id="first_name" placeholder="" value="{{$user->first_name}}" class="form-control @error('first_name') is-invalid @enderror" autofocus>
+                        <input type="text" id="first_name" placeholder="" value="{{$user->first_name}}" class="form-control @error('first_name') is-invalid @enderror" name="first_name" autofocus>
                         @error('first_name')
                         <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -51,7 +51,7 @@
                         @if( $user->avatar == 'default.jpg')
                             <img src="{{asset('images/'.$user->avatar)}}" style="width:40%;height:150px;">
                         @else
-                            <img src="{{asset('images/avatar/'.$user->avatar)}}" style="width: 70%;height:  250px;">
+                            <img src="{{asset('images/users/'.$user->avatar)}}" style="width: 70%;height:  250px;">
                         @endif
                     </div>
                     <div class="col-md-6 mb-6">
