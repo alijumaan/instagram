@@ -1,38 +1,54 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="album py-5 bg-light">
+    <div class="album bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-md-2"></div>
-                <div class="col-md-8">
-                    <div class="card mb-8 box-shadow">
+                <div class="col-md-3"></div>
+                <div class="col-md-9">
+                    <div class="card mb-8 box-shadow" style="width: 300px;">
                         @php
                             $date=date('Y-m-d', $post['date']);
                         @endphp
                         <div class="card-header" style="background-color:  white;">
                             <div class="media text-muted pt-3" style="direction:  rtl;">
-                                <img src="{{asset('images/users/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; width: 50px;height: 50px;">
+                                @if($post->user->avatar == 'default.jpg')
+                                    <img src="{{asset('images/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; width: 70px">
+                                @else
+                                    <img src="{{asset('images/users/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; width: 70px">
+                                @endif
                                 <div class="media-body pb-3 mb-0" style="text-align: right;direction:  rtl;" >
                                     <p class="card-text" style="text-align: right;direction:  rtl;">{{ $post->user->username }}</p>
+                                </div>
+                                <div class="">
+                                    @auth
+                                        @if( $post->user_id == auth()->user()->id )
+                                            <a class="btn btn-sm btn-outline-danger" href="javascript:void(0)" onclick="if (confirm('{{ __('frontend.R_u_sure') }}')) { document.getElementById('delete-{{ $post->id  }}').submit(); } else { return false; }" style="text-decoration: none">
+                                                {{ __('frontend.Delete') }}
+                                            </a>
+                                            <form action="{{ route('posts.destroy', $post->id) }}" method="post" id="delete-{{ $post->id  }}" style="display: none">
+                                                @csrf
+                                                @method('DELETE')
+                                            </form>
+                                        @endif
+                                    @endauth
                                 </div>
                                 @can('update', $post)
                                     <form action="{{ route('posts.destroy', $post->id) }}" method="post" id="ajax_unlike">
                                         {{ csrf_field() }}
                                         <input name="_method" type="hidden" value="DELETE">
-                                        <button class="btn btn-sm btn-outline-secondary" >حذف</button>
+                                        <button class="btn btn-sm btn-outline-secondary" >{{ __('frontend.Delete') }}</button>
                                     </form>
                                 @endcan
                             </div>
                         </div>
-                        <img class="card-img-top" src="{{ asset('images/posts/'. $post->image_path) }}" alt="Card image cap">
+                        <img class="card-img-top" src="{{ asset('images/posts/'. $post->image_path) }}" alt="Card image cap" style="height: 300px;">
                         <div class="card-body">
                             <p class="card-text" style="text-align: right;direction:  rtl;">{{ $post->body }}</p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="row">
                                     <div class="btn-group" style="margin-top:  4px;">
-{{--                                        <button class="btn btn-sm btn-outline-secondary" type="button" ><i class="fa fa-heart" style="margin-right:  10%;"></i><label id="count_id">{{$count}}</label></button>--}}
-                                        <button class="btn btn-sm btn-outline-secondary" id="btn_value_id" onclick="like_action()"> أعجبني </button>
+                                        <button class="btn btn-sm btn-outline-secondary" type="button" ><i class="fa fa-heart" style="margin-right: 10%;"></i><label id="count_id">{{$post->count()}}</label></button>
                                     </div>
                                 </div>
                                 <small class="text-muted">{{ $post->created_at->format('M d, Y') }}</small>

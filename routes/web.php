@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\LikeController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\UserController;
@@ -16,4 +17,7 @@ Route::group(['middleware' => ['auth']], function() {
 
     // POST
     Route::resource('posts', PostController::class);
+
+    // LIKE
+    Route::resource('likes', LikeController::class);
 });

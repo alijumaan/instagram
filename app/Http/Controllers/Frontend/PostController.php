@@ -111,6 +111,26 @@ class PostController extends Controller
 
     public function destroy($id)
     {
-        //
+        $post = Post::whereId($id)->first();
+        if ($post->user_id == auth()->user()->id)
+        {
+            if ($post->delete())
+            {
+                return redirect()->route('home')->with([
+                    'message' => 'Post Deleted Successfully',
+                    'alert-type' => 'success'
+                ]);
+            } else {
+                return redirect()->route('home')->with([
+                    'message' => 'Something was wrong',
+                    'alert-type' => 'danger'
+                ]);
+            }
+        } else {
+            return redirect()->route('home')->with([
+                'message' => 'You not allow delete this Post',
+                'alert-type' => 'danger'
+            ]);
+        }
     }
 }
