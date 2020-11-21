@@ -9,18 +9,6 @@ use Illuminate\Http\Request;
 class LikeController extends Controller
 {
 
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
-
     public function store(Request $request)
     {
         $is_like = Like::where(['user_id'=> auth()->user()->id, 'post_id'=> $request->post_id]);
@@ -38,25 +26,6 @@ class LikeController extends Controller
         }
 
     }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
 
     public function destroy($post_id)
     {

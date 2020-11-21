@@ -26,4 +26,5 @@ return [
     'R_u_sure' => 'R_u_sure',
     'Like' => 'Like',
     'Unlike' => 'Unlike',
+    'Add Comment' => 'Add Comment',
 ];

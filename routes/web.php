@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\LikeController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\UserController;
@@ -14,9 +15,12 @@ Route::group(['middleware' => ['auth']], function() {
     Route::resource('users', UserController::class)->only('update', 'destroy');
     Route::get('/user/profile', [UserController::class, 'edit'])->name('profile');
 
-    // POST
+    // POSTS
     Route::resource('posts', PostController::class);
 
-    // LIKE
-    Route::resource('likes', LikeController::class);
+    // LIKES
+    Route::resource('likes', LikeController::class)->only('store', 'destroy');
+
+    // COMMENTS
+    Route::resource('comments', CommentController::class)->only('store', 'destroy');
 });

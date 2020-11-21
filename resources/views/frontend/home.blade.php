@@ -13,9 +13,9 @@
                         <div class="card-header" style="background-color:  white;">
                             <div class="media text-muted pt-3" style="direction:  rtl;">
                                 @if( $post->user->avatar == 'default.jpg')
-                                    <img src="{{asset('images/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; width: 70px">
+                                    <img src="{{asset('images/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; height: 50px">
                                 @else
-                                    <img src="{{asset('images/users/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; width: 70px">
+                                    <img src="{{asset('images/users/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; height: 50px">
                                 @endif
                                 <div class="media-body mb-0" style="text-align: right;direction:  rtl;" >
                                     <p class="card-text" style="text-align: right;direction:  rtl;">{{ $post->user->username }}</p>
@@ -39,8 +39,8 @@
                                     <input type="hidden" name="post_id" value="{{ $post->id }}">
                                     <div class="row">
                                         <div class="btn-group" style="margin-top:  4px;">
-                                            <button class="btn btn-sm btn-outline-secondary" type="button" ><i class="fa fa-heart" style="margin-right:  10%;"></i><label id="count_id">{{ $post->count() }}</label></button>
-                                            <button class="btn btn-sm btn-outline-secondary" id="btn_value_id" onclick="like_action()" type="submit"> أعجبني </button>
+{{--                                            <button class="btn btn-sm btn-outline-secondary" type="button" ><i class="fa fa-heart" style="margin-right:  10%;"></i><label id="count_id">{{ $post->count() }}</label></button>--}}
+{{--                                            <button class="btn btn-sm btn-outline-secondary" id="btn_value_id" onclick="like_action()" type="submit"> أعجبني </button>--}}
                                             @auth
                                                 @if( $post->user_id == auth()->user()->id )
                                                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-sm btn-outline-secondary" > تعديل </a>

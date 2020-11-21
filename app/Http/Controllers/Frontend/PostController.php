@@ -60,6 +60,7 @@ class PostController extends Controller
         return view('frontend.post.show', compact('post', 'count', 'userLike'));
     }
 
+
     public function edit($id)
     {
         $post = Post::whereId($id)->first();

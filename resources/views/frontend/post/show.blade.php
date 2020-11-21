@@ -7,9 +7,6 @@
                 <div class="col-md-3"></div>
                 <div class="col-md-9">
                     <div class="card mb-8 box-shadow" style="width: 600px;">
-                        @php
-                            $date = date('Y-m-d', $post['date']);
-                        @endphp
                         <div class="card-header" style="background-color:  white;">
                             <div class="media text-muted pt-3" style="direction:  rtl;">
                                 @if($post->user->avatar == 'default.jpg')
@@ -63,46 +60,47 @@
                             </div>
                         </div>
 
-{{--                        <div class="card-footer" style="direction:  rtl;text-align:  right;">--}}
-{{--                            <div class="media text-muted pt-3">--}}
-{{--                                <img src="{{asset('images/users/'.auth()->user()->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">--}}
-{{--                                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >--}}
-{{--                                    <div class="d-flex justify-content-between align-items-center w-100">--}}
-{{--                                        <strong class="text-gray-dark">{{auth()->user()->name}}</strong>--}}
-{{--                                    </div>--}}
-{{--                                    <form action="{{ url('comment') }}" method="POST">--}}
-{{--                                        @csrf--}}
-{{--                                        <input type="hidden" name="post_id" value="{{ $post->id }}">--}}
-{{--                                        <div class="row">--}}
-{{--                                            <div class="col-md-10">--}}
-{{--                                                <input type="text" name="comment" class="form-control" placeholder="أضف تعليقاً" style="width:  100%;">--}}
-{{--                                            </div>--}}
-{{--                                            <div class="col-md-2" style="margin-top:  4px;">--}}
-{{--                                                <input type="submit" class="btn btn-sm btn-outline-secondary" name="send" value="إضافة التعليق">--}}
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-{{--                                    </form>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            @foreach ($post_comments->comments as $comment)--}}
-{{--                                <div class="media text-muted pt-3">--}}
-{{--                                    <img src="{{asset('images/avatar/'.$comment->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">--}}
-{{--                                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >--}}
-{{--                                        <div class="d-flex justify-content-between align-items-center w-100">--}}
-{{--                                            <strong class="text-gray-dark">{{$comment->user->name}}</strong><br>--}}
-{{--                                            @if($comment->user->id==auth()->user()->id)--}}
-{{--                                                <form action="{{action('CommentController@destroy', $comment->id)}}" method="post">--}}
-{{--                                                    {{ csrf_field() }}--}}
-{{--                                                    <input name="_method" type="hidden" value="DELETE">--}}
-{{--                                                    <input type="submit" class="btn btn-outline-danger" value="حذف التعليق">--}}
-{{--                                                </form>--}}
-{{--                                            @endif--}}
-{{--                                        </div>--}}
-{{--                                        <span class="d-block">{{$comment->comment}}</span>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            @endforeach--}}
-{{--                        </div>--}}
+                        <div class="card-footer" style="direction:  rtl;text-align:  right;">
+                            <div class="media text-muted pt-3">
+                                <img src="{{asset('images/users/'.auth()->user()->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">
+                                <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
+                                    <div class="d-flex justify-content-between align-items-center w-100">
+                                        <strong class="text-gray-dark">{{auth()->user()->name}}</strong>
+                                    </div>
+                                    <form action="{{ route('comments.store') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" name="post_id" value="{{ $post->id }}">
+                                        <div class="row">
+                                            <div class="col-md-10">
+                                                <input type="text" name="comment" class="form-control" placeholder="{{ __('frontend.Add Comment') }}" style="width:  100%;">
+                                                @error('comment')<span class="text-danger">{{ $message }}</span>@enderror
+                                            </div>
+                                            <div class="col-md-2" style="margin-top: 4px;">
+                                                <input type="submit" class="btn btn-sm btn-outline-secondary" name="send" value="{{ __('frontend.Comment') }}">
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            @foreach ( $post->comments as $comment)
+                                <div class="media text-muted pt-3">
+                                    <img src="{{asset('images/users/'.$comment->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">
+                                    <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
+                                        <div class="d-flex justify-content-between align-items-center w-100">
+                                            <strong class="text-gray-dark">{{$comment->user->name}}</strong><br>
+                                            @if($comment->user->id==auth()->user()->id)
+                                                <form action="{{ route('comments.destroy', $comment->id) }}" method="post">
+                                                    {{ csrf_field() }}
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <input type="submit" class="btn btn-outline-danger" value="{{ __('frontend.Delete') }}">
+                                                </form>
+                                            @endif
+                                        </div>
+                                        <span class="d-block">{{$comment->comment}}</span>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
