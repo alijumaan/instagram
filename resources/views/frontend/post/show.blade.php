@@ -84,11 +84,16 @@
                             </div>
                             @foreach ( $post->comments as $comment)
                                 <div class="media text-muted pt-3">
-                                    <img src="{{asset('images/users/'.$comment->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">
+
+                                    @if($comment->user->avatar == 'default.jpg')
+                                        <img src="{{asset('images/'. $comment->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">
+                                    @else
+                                        <img src="{{asset('images/users/'.$comment->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">
+                                    @endif
                                     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <strong class="text-gray-dark">{{$comment->user->name}}</strong><br>
-                                            @if($comment->user->id==auth()->user()->id)
+                                            @if($comment->user->id == auth()->user()->id)
                                                 <form action="{{ route('comments.destroy', $comment->id) }}" method="post">
                                                     {{ csrf_field() }}
                                                     <input name="_method" type="hidden" value="DELETE">
