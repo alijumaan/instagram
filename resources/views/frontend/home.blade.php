@@ -8,7 +8,7 @@
 
                 <div class="col-md-6">
                     @forelse($posts as $post)
-                    <div class="card mb-8 box-shadow" style="width: 300px;">
+                    <div class="card mb-8 box-shadow" style="width: 600px;">
 
                         <div class="card-header" style="background-color:  white;">
                             <div class="media text-muted pt-3" style="direction:  rtl;">
@@ -29,7 +29,7 @@
                                 @endcan
                             </div>
                         </div>
-                        <a href="{{ route('posts.show', $post->id) }}"><img class="card-img-top" height="300px" src="{{ asset('images/posts/'. $post->image_path) }}" alt="Card image cap"></a>
+                        <a href="{{ route('posts.show', $post->id) }}"><img class="card-img-top" height="600px" src="{{ asset('images/posts/'. $post->image_path) }}" alt="Card image cap"></a>
                         <div class="card-body">
                             <p class="card-text" style="text-align: right;direction:  rtl;">{{ $post->body }}</p>
                             <div class="d-flex justify-content-between align-items-center">
@@ -67,3 +67,4 @@
     </div>
 
 @endsection
+

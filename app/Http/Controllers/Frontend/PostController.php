@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\PostRequest;
+use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Support\Facades\File;
 
@@ -12,7 +13,8 @@ class PostController extends Controller
 
     public function index()
     {
-        //
+        $posts = Post::with('user')->orderBy('id', 'desc')->paginate(5);
+        return view('frontend.home', compact('posts'));
     }
 
 
@@ -53,9 +55,10 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::with('user')->findOrFail($id);
-        return view('frontend.post.show', compact('post'));
+        $count = Like::where('post_id', $id)->count();
+        $userLike = Like::where(['user_id'=> auth()->user()->id, 'post_id' => $id])->get();
+        return view('frontend.post.show', compact('post', 'count', 'userLike'));
     }
-
 
     public function edit($id)
     {

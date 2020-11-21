@@ -2,13 +2,12 @@
 
 use App\Http\Controllers\Frontend\LikeController;
 use App\Http\Controllers\Frontend\PostController;
-use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\UserController;
 use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 
 // HOME
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
     // USERS

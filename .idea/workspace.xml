@@ -20,9 +20,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="746d623c-480a-446e-abec-8cd7240f69d2" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/images/posts/1605869207me.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/images/posts/1605904731post_7.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/lang/en/frontend.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/HomeController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/LikeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/LikeController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Frontend/PostController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Frontend/PostController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Post.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Post.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/images/users/1605810183firefighter1.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/lang/ar/frontend.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/lang/ar/frontend.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/frontend/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/frontend/post/show.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/post/show.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/partial/header.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/partial/header.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -159,7 +170,7 @@
     <property name="ASKED_SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/frontend/post" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/lang/en" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -170,19 +181,19 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/lang/en" />
+      <recent name="$PROJECT_DIR$/resources/views/frontend/post" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/resources" />
+      <recent name="$PROJECT_DIR$/public/images/avatar" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/resources/views/frontend" />
       <recent name="$PROJECT_DIR$/app/Http/Controllers/Frontend" />
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/public/assets" />
       <recent name="$PROJECT_DIR$/resources/views/partial" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/frontend/post" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/resources" />
-      <recent name="$PROJECT_DIR$/public/images/avatar" />
-      <recent name="$PROJECT_DIR$/public/css" />
     </key>
   </component>
   <component name="RunManager">
@@ -206,7 +217,10 @@
       <workItem from="1605787879987" duration="1593000" />
       <workItem from="1605797410081" duration="11082000" />
       <workItem from="1605814842152" duration="7897000" />
-      <workItem from="1605824923259" duration="917000" />
+      <workItem from="1605824923259" duration="6216000" />
+      <workItem from="1605862172346" duration="8629000" />
+      <workItem from="1605901857400" duration="4776000" />
+      <workItem from="1605961247329" duration="530000" />
     </task>
     <servers />
   </component>
@@ -229,22 +243,38 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1416" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605818022072">
+    <state x="1363" y="360" width="641" height="394" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1605902008049">
       <screen x="0" y="27" width="2560" height="1053" />
     </state>
-    <state x="1416" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.2560.1053/2560.0.2560.1080@0.27.2560.1053" timestamp="1605818022072" />
-    <state x="2560" y="0" width="1635" height="790" maximized="true" key="dock-window-1" timestamp="1605812163959">
+    <state x="1363" y="360" width="641" height="394" key="#com.intellij.fileTypes.FileTypeChooser/0.27.2560.1053/2560.0.2560.1080@0.27.2560.1053" timestamp="1605902008049" />
+    <state x="1416" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1605902172980">
+      <screen x="0" y="27" width="2560" height="1053" />
+    </state>
+    <state x="1416" y="311" width="524" height="491" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.27.2560.1053/2560.0.2560.1080@0.27.2560.1053" timestamp="1605902172980" />
+    <state x="1524" y="480" width="319" height="154" key="NewPhpFileDialog" timestamp="1605902034046">
+      <screen x="0" y="27" width="2560" height="1053" />
+    </state>
+    <state x="1524" y="480" width="319" height="154" key="NewPhpFileDialog/0.27.2560.1053/2560.0.2560.1080@0.27.2560.1053" timestamp="1605902034046" />
+    <state x="1922" y="45" width="1738" height="1013" key="dock-window-1" timestamp="1605906135675">
       <screen x="2560" y="0" width="2560" height="1080" />
     </state>
-    <state x="2560" y="0" width="1635" height="790" maximized="true" key="dock-window-1/0.27.2560.1053/2560.0.2560.1080@0.27.2560.1053" timestamp="1605812163959" />
+    <state x="1922" y="45" width="1738" height="1013" key="dock-window-1/0.27.2560.1053/2560.0.2560.1080@0.27.2560.1053" timestamp="1605906135675" />
+    <state x="3972" y="67" width="1738" height="1013" key="dock-window-2" timestamp="1605906135675">
+      <screen x="2560" y="0" width="2560" height="1080" />
+    </state>
+    <state x="3972" y="67" width="1738" height="1013" key="dock-window-2/0.27.2560.1053/2560.0.2560.1080@0.27.2560.1053" timestamp="1605906135675" />
     <state x="1507" y="309" width="615" height="488" key="find.popup" timestamp="1605797839254">
       <screen x="0" y="27" width="2560" height="1053" />
     </state>
     <state x="1507" y="309" width="615" height="488" key="find.popup/0.27.2560.1053/2560.0.2560.1080@0.27.2560.1053" timestamp="1605797839254" />
-    <state x="1420" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1605825542322">
+    <state x="1323" y="252" key="run.anything.popup" timestamp="1605871182098">
       <screen x="0" y="27" width="2560" height="1053" />
     </state>
-    <state x="1420" y="259" width="672" height="678" key="search.everywhere.popup/0.27.2560.1053/2560.0.2560.1080@0.27.2560.1053" timestamp="1605825542322" />
+    <state x="1323" y="252" key="run.anything.popup/0.27.2560.1053/2560.0.2560.1080@0.27.2560.1053" timestamp="1605871182098" />
+    <state x="1420" y="259" width="672" height="678" key="search.everywhere.popup" timestamp="1605961651454">
+      <screen x="0" y="27" width="2560" height="1053" />
+    </state>
+    <state x="1420" y="259" width="672" height="678" key="search.everywhere.popup/0.27.2560.1053/2560.0.2560.1080@0.27.2560.1053" timestamp="1605961651454" />
     <state x="1381" y="418" width="540" height="277" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1605729570523">
       <screen x="0" y="27" width="2560" height="1053" />
     </state>

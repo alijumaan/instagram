@@ -30,16 +30,13 @@ class LikeController extends Controller
             $like['post_id'] = $request->post_id;
             $like['user_id'] = auth()->user()->id;
             $like->save();
-            return redirect()->back()->with([
-                'message' => 'You Like successfully ',
-                'alert-type' => 'success'
-            ]);
+
+//          return redirect()->back()->with(['message' => 'You Like successfully ', 'alert-type' => 'success']);
+
+            $count = Like::where('post_id', $request->post_id)->count();
+            return response()->json(['count' => $count, 'id' => $like->id]);
         }
 
-        return redirect()->back()->with([
-            'message' => 'You Like Already ',
-            'alert-type' => 'warning'
-        ]);
     }
 
 
@@ -61,8 +58,13 @@ class LikeController extends Controller
     }
 
 
-    public function destroy($id)
+    public function destroy($post_id)
     {
-        //
+        $like = Like::where(['user_id' => auth()->user()->id, 'post_id' => $post_id]);
+        $like->delete();
+//      return redirect()->route('home')->with(['message' => 'Unliked', 'alert-type' => 'success']);
+        $count = Like::where('post_id', $post_id)->count();
+        return response()->json(['count' => $count]);
+
     }
 }

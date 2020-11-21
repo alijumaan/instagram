@@ -6,9 +6,9 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-9">
-                    <div class="card mb-8 box-shadow" style="width: 300px;">
+                    <div class="card mb-8 box-shadow" style="width: 600px;">
                         @php
-                            $date=date('Y-m-d', $post['date']);
+                            $date = date('Y-m-d', $post['date']);
                         @endphp
                         <div class="card-header" style="background-color:  white;">
                             <div class="media text-muted pt-3" style="direction:  rtl;">
@@ -35,22 +35,30 @@
                                 </div>
                                 @can('update', $post)
                                     <form action="{{ route('posts.destroy', $post->id) }}" method="post" id="ajax_unlike">
-                                        {{ csrf_field() }}
-                                        <input name="_method" type="hidden" value="DELETE">
+                                        @csrf
+                                        @method('DELETE')
                                         <button class="btn btn-sm btn-outline-secondary" >{{ __('frontend.Delete') }}</button>
                                     </form>
                                 @endcan
                             </div>
                         </div>
-                        <img class="card-img-top" src="{{ asset('images/posts/'. $post->image_path) }}" alt="Card image cap" style="height: 300px;">
+                        <img class="card-img-top" src="{{ asset('images/posts/'. $post->image_path) }}" alt="Card image cap" style="height: 600px;">
                         <div class="card-body">
                             <p class="card-text" style="text-align: right;direction:  rtl;">{{ $post->body }}</p>
                             <div class="d-flex justify-content-between align-items-center">
+
                                 <div class="row">
                                     <div class="btn-group" style="margin-top:  4px;">
-                                        <button class="btn btn-sm btn-outline-secondary" type="button" ><i class="fa fa-heart" style="margin-right: 10%;"></i><label id="count_id">{{$post->count()}}</label></button>
+                                        <button class="btn btn-sm btn-outline-secondary" type="button" >
+                                            <i class="fa fa-heart" style="margin-right: 10%;"></i>
+                                            <label id="count_id">{{ $count }}</label>
+                                        </button>
+                                        <button class="btn btn-sm btn-outline-secondary" id="btn_value_id" onclick="like_action()" type="submit">
+                                            {{ __('frontend.Like') }}
+                                        </button>
                                     </div>
                                 </div>
+
                                 <small class="text-muted">{{ $post->created_at->format('M d, Y') }}</small>
                             </div>
                         </div>
@@ -103,54 +111,47 @@
 @endsection
 
 @section('script')
-    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js">
+
+    <script>
+        let like = "أعجبني";
+        let unlike = "إلغاء الإعجاب";
+        let token = '{{ csrf_token() }}';
+        let post_id = "{{ $post['id'] }}";
+        let like_id = 0;
+
+        @if( sizeof( $userLike) == 1 )
+            like_id = "{{ $userLike[0]->id }}";
+        $('#btn_value_id').html(unlike);
+        @endif
+
+        function like_action(){
+
+            if( like_id == 0 ){
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('likes') }}",
+                    data: {post_id: post_id, _token: token},
+                    success: function( msg ) {
+                        $('#count_id').html(msg.count);
+                        $('#btn_value_id').html(unlike);
+                        like_id = msg.id;
+                    }
+                });
+            }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('likes') }}/" + post_id,
+                    data: { post_id: post_id, _token: token, _method:"DELETE" },
+                    success: function( msg ) {
+                        $('#count_id').html(msg.count);
+                        $('#btn_value_id').html(like);
+                        like_id = 0;
+                    }
+                });
+            }
+        }
+
     </script>
-{{--    <script type="text/javascript">--}}
-{{--        var like= "أعجبني";--}}
-{{--        var unlike= "إلغاء الاعجاب";--}}
-{{--        var token = '{{csrf_token()}}';--}}
-{{--        var post_id = "{{$post['id']}}";--}}
-{{--        var like_id = 0;--}}
 
-{{--        @if(sizeof($userLike)==1)--}}
-{{--            like_id = "{{$userLike[0]->id}}";--}}
-{{--        $('#btn_value_id').html(unlike);--}}
-{{--        @endif--}}
-
-{{--        function like_action(){--}}
-
-{{--            if(like_id == 0){--}}
-{{--                $.ajax({--}}
-{{--                    type: "POST",--}}
-{{--                    url: "{{ url('like') }}",--}}
-{{--                    data: {post_id: post_id, _token: token},--}}
-{{--                    success: function( msg ) {--}}
-{{--                        $('#count_id').html(msg.count);--}}
-{{--                        $('#btn_value_id').html(unlike);--}}
-{{--                        like_id = msg.id;--}}
-{{--                    }--}}
-{{--                });--}}
-{{--            }--}}
-{{--            else{--}}
-{{--                $.ajax({--}}
-{{--                    type: "POST",--}}
-{{--                    url: "{{ url('like') }}/"+like_id+"?post_id="+post_id,--}}
-{{--                    data: {post_id: post_id, _token: token, _method:"DELETE"},--}}
-{{--                    success: function( msg ) {--}}
-{{--                        $('#count_id').html(msg.count);--}}
-{{--                        $('#btn_value_id').html(like);--}}
-{{--                        like_id =0;--}}
-{{--                    }--}}
-{{--                });--}}
-{{--            }--}}
-{{--        }--}}
-{{--    </script>--}}
 @endsection
-
-
-
-
-
-
-
-
