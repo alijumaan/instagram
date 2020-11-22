@@ -56,9 +56,9 @@
             <h1 class="jumbotron-heading"></h1>
             <p class="lead text-muted">قم بمشاركة صورك وفيديوهاتك من خلال شبكة الإنستقرام</p>
             <p style="direction: rtl;">
-                <a href="{{route('home')}}" class="btn btn-{{ isset($active_home) ? $active_home : 'secondary' }} my-2">{{ __('frontend.Home') }}</a>
-                <a href="{{url('user/followers')}}" class="btn btn-{{ isset($active_follow) ? $active_follow : 'secondary' }} my-2">{{ __('frontend.Followers') }}</a>
-                <a href="{{url('users')}}" class="btn btn-{{ isset($active_user) ? $active_user : 'secondary' }} my-2">{{ __('frontend.Users') }}</a>
+                <a href="{{ route('home') }}" class="btn btn-{{ isset($active_home) ? $active_home : 'secondary' }} my-2">{{ __('frontend.Home') }}</a>
+                <a href="{{ route('followers.index') }}" class="btn btn-{{ isset($active_follow) ? $active_follow : 'secondary' }} my-2">{{ __('frontend.Followers') }}</a>
+                <a href="{{ route('users.index') }}" class="btn btn-{{ isset($active_user) ? $active_user : 'secondary' }} my-2">{{ __('frontend.Users') }}</a>
                 <a href="{{ route('profile') }}" class="btn btn-{{ isset($active_profile) ? $active_profile : 'secondary' }} my-2">{{ __('frontend.My Profile') }}</a>
             </p>
         </div>

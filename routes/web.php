@@ -4,6 +4,7 @@ use App\Http\Controllers\Frontend\CommentController;
 use App\Http\Controllers\Frontend\LikeController;
 use App\Http\Controllers\Frontend\PostController;
 use App\Http\Controllers\Frontend\UserController;
+use App\Http\Controllers\Frontend\FollowController;
 use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 
@@ -12,7 +13,7 @@ Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
     // USERS
-    Route::resource('users', UserController::class)->only('update', 'destroy');
+    Route::resource('users', UserController::class)->only('index', 'update');
     Route::get('/user/profile', [UserController::class, 'edit'])->name('profile');
 
     // POSTS
@@ -23,4 +24,9 @@ Route::group(['middleware' => ['auth']], function() {
 
     // COMMENTS
     Route::resource('comments', CommentController::class)->only('store', 'destroy');
+
+    // FOLLOW
+    Route::resource('followers', FollowController::class);
+
+
 });

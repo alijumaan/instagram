@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Follower;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -12,10 +13,21 @@ use Illuminate\Support\Facades\Validator;
 class UserController extends Controller
 {
 
+    public function index()
+    {
+        $users = User::where('id', '!=', auth()->user()->id)->get();
+//        $requests = Follower::where('from_user_id', auth()->user()->id)->where('accepted', 0)->get();
+        $requests = Follower::with('to_user')->where(['from_user_id' => auth()->user()->id, 'accepted' => 0])->get();
+        $active_user = "primary";
+        return view('frontend.user.users', compact('users', 'active_user', 'requests'));
+    }
+
+
     public function edit()
     {
         $user = User::find(auth()->user()->id);
-        return view('auth.profile', compact('user'));
+        $active_profile = "primary";
+        return view('frontend.user.profile', compact('user', 'active_profile'));
     }
 
 
@@ -73,8 +85,4 @@ class UserController extends Controller
     }
 
 
-    public function destroy($id)
-    {
-        //
-    }
 }

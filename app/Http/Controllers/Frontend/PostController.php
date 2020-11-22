@@ -14,7 +14,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::with('user')->orderBy('id', 'desc')->paginate(5);
-        return view('frontend.home', compact('posts'));
+        $active_home = "primary";
+        return view('frontend.home', compact('posts', 'active_home'));
     }
 
 
