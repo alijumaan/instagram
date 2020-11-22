@@ -16,7 +16,8 @@ class PostController extends Controller
         $posts = Post::withCount('likes')
             ->whereIn('user_id', auth()->user()->following()->where('accepted', 1)
             ->pluck('to_user_id'))
-            ->paginate(5);
+            ->orderBy('id', 'desc')
+            ->paginate(9);
         $active_home = "primary";
         return view('frontend.home', compact('posts', 'active_home'));
     }

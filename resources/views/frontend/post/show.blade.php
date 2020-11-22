@@ -8,9 +8,9 @@
                         <div class="card-header">
                             <div class="media text-muted pt-3" style="direction:  rtl;">
                                 @if($post->user->avatar == 'default.jpg')
-                                    <img src="{{asset('images/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; width: 70px">
+                                    <img src="{{asset('images/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; max-width: 70px">
                                 @else
-                                    <img src="{{asset('images/users/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; width: 70px">
+                                    <img src="{{asset('images/users/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; max-width: 70px">
                                 @endif
                                 <div class="media-body pb-3 mb-0" style="text-align: right;direction:  rtl;" >
                                     <p class="card-text" style="text-align: right;direction:  rtl;">{{ $post->user->username }}</p>
@@ -62,9 +62,9 @@
                             <div class="media text-muted pt-3">
 
                                 @if( auth()->user()->avatar == 'default.jpg' )
-                                    <img src="{{asset('images/'.auth()->user()->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">
+                                    <img src="{{asset('images/'.auth()->user()->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; max-width: 70px;max-height: 70px;">
                                 @else
-                                    <img src="{{asset('images/users/'.auth()->user()->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">
+                                    <img src="{{asset('images/users/'.auth()->user()->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; max-width: 70px;max-height: 70px;">
                                 @endif
 
                                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >

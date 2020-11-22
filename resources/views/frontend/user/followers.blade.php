@@ -11,9 +11,9 @@
                         @foreach ($follow_requests as $request)
                             <div class="media text-muted pt-3">
                                 @if( $request->from_user->avatar == 'default.jpg')
-                                    <img src="{{ asset('images/'.$request->from_user->avatar) }}" alt="" class="col-sm-2 mr-2 rounded" style="margin-right: -3%;width: 50px;height: 50px;">
+                                    <img src="{{ asset('images/'.$request->from_user->avatar) }}" alt="" class="col-sm-2 mr-2 rounded" style="margin-right: -3%; max-width: 70px;max-height: 70px;">
                                 @else
-                                    <img src="{{ asset('images/users/'.$request->from_user->avatar) }}" alt="" class="col-sm-2 mr-2 rounded" style="margin-right: -3%;width: 50px;height: 50px;">
+                                    <img src="{{ asset('images/users/'.$request->from_user->avatar) }}" alt="" class="col-sm-2 mr-2 rounded" style="margin-right: -3%; max-width: 70px;max-height: 70px;">
                                 @endif
                                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
                                     <div class="d-flex justify-content-between align-items-center w-100">
@@ -51,9 +51,9 @@
                             @endphp
                             <div class="media text-muted pt-3">
                                 @if( $user->avatar == 'default.jpg')
-                                    <img src="{{ asset('images/'.$user->avatar) }}" alt="" class="col-sm-2 mr-2 rounded" style="margin-right: -3%;width: 50px;height: 50px;">
+                                    <img src="{{ asset('images/'.$user->avatar) }}" alt="" class="col-sm-2 mr-2 rounded" style="margin-right: -3%;max-width: 70px;max-height: 70px;">
                                 @else
-                                    <img src="{{asset('images/users/'.$user->avatar)}}" alt="" class="col-sm-2 mr-2 rounded" style="margin-right: -3%;width: 50px;height: 50px;">
+                                    <img src="{{asset('images/users/'.$user->avatar)}}" alt="" class="col-sm-2 mr-2 rounded" style="margin-right: -3%;max-width: 70px;max-height: 70px;">
                                 @endif
 
                                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">

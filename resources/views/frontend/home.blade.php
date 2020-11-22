@@ -6,11 +6,11 @@
         <div class="container">
             <div class="row">
                 @foreach ($posts as $post)
-                    <div class="col-md-4 col-sm-6">
+                    <div class="col-md-4 col-sm-12 col-xl-4 col-lg-4">
                         <div class="card mb-4 box-shadow">
                             <img class="card-img-top" src="{{asset('images/posts/'.$post->image_path)}}" alt="Card image cap" style="height: 250px">
-                            <div class="card-body" >
-                                <p class="card-text" style="text-align: right;direction:  rtl;">
+                            <div class="card-body">
+                                <p class="card-text">
                                     <small>@ {{$post->user->username}}</small><br>
                                     {{ $post->body }}
                                 </p>
