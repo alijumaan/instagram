@@ -25,7 +25,7 @@ class CommentRequest extends FormRequest
     {
         return [
             'post_id' => 'required',
-            'comment' => 'required|string'
+            'comment' => 'required|string|max:255'
         ];
     }
 }

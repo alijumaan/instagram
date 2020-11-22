@@ -1,17 +1,17 @@
 <header style="position:  fixed;z-index:  10000;width:  100%;">
-    <nav class="navbar navbar-expand-md navbar-light btn-dark shadow-sm">
+    <nav class="navbar navbar-expand-md navbar-light shadow-sm" style="background-color: #000000;">
         <div class="container">
-            <a class="navbar-brand text-white" href="{{ url('/') }}">
+            <a class="navbar-brand text-white" href="{{ route('home') }}">
                 {{ config('app.name', 'Laravel') }}
             </a>
-            <button class="bg-light navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+            <button class="bg-secondary navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <!-- Search -->
                 <div class="navbar-nav mr-auto">
-                    <input class="form-control" id="search" style="direction: rtl;width: 100%" type="text" placeholder="البحث" aria-label="Search" autocomplete="off">
+                    <input class="form-control" id="search" style="direction: rtl;width: 100%; margin: 5px; border: 1px solid #484f64; background: none;" type="text" placeholder="البحث" aria-label="Search" autocomplete="off">
                 </div>
 
                 <ul class="navbar-nav">
@@ -51,11 +51,11 @@
 </header>
 
 <div class="pt-5">
-    <section class="jumbotron text-center">
+    <section class="jumbotron text-center bg-dark">
         <div class="container">
             <h1 class="jumbotron-heading"></h1>
-            <p class="lead text-muted">قم بمشاركة صورك وفيديوهاتك من خلال شبكة الإنستقرام</p>
-            <p style="direction: rtl;">
+            <p class="lead text-muted">انشر أجمل صورك وفيديوهاتك لتحصل على تفاعل الاصداقاء معك!</p>
+            <p>
                 <a href="{{ route('home') }}" class="btn btn-{{ isset($active_home) ? $active_home : 'secondary' }} my-2">{{ __('frontend.Home') }}</a>
                 <a href="{{ route('followers.index') }}" class="btn btn-{{ isset($active_follow) ? $active_follow : 'secondary' }} my-2">{{ __('frontend.Followers') }}</a>
                 <a href="{{ route('users.index') }}" class="btn btn-{{ isset($active_user) ? $active_user : 'secondary' }} my-2">{{ __('frontend.Users') }}</a>

@@ -42,4 +42,5 @@ return [
     'Refuse Following' => 'رفض متابعتي',
     'Unfollow' => 'إلغاء المتابعة',
     'Friends' => 'الأصدقاء',
+    'Show' => 'عرض',
 ];

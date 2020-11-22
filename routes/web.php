@@ -8,10 +8,12 @@ use App\Http\Controllers\Frontend\FollowController;
 use Illuminate\Support\Facades\Route;
 require __DIR__.'/auth.php';
 
-// HOME
-Route::get('/', [PostController::class, 'index'])->name('home');
 
 Route::group(['middleware' => ['auth']], function() {
+
+    // HOME
+    Route::get('/', [PostController::class, 'index'])->name('home');
+
     // USERS
     Route::resource('users', UserController::class)->only('index', 'update');
     Route::get('/user/profile', [UserController::class, 'edit'])->name('profile');

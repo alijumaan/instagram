@@ -1,13 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="album bg-light">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3"></div>
-                <div class="col-md-9">
-                    <div class="card mb-8 box-shadow" style="width: 600px;">
-                        <div class="card-header" style="background-color:  white;">
+        <div class="album py-5 bg-dark">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="card mb-12 box-shadow" style="max-width: 600px;">
+                        <div class="card-header">
                             <div class="media text-muted pt-3" style="direction:  rtl;">
                                 @if($post->user->avatar == 'default.jpg')
                                     <img src="{{asset('images/'. $post->user->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-right: -3%; width: 70px">
@@ -39,7 +37,7 @@
                                 @endcan
                             </div>
                         </div>
-                        <img class="card-img-top" src="{{ asset('images/posts/'. $post->image_path) }}" alt="Card image cap" style="height: 600px;">
+                        <img class="card-img-top" src="{{ asset('images/posts/'. $post->image_path) }}" alt="Card image cap" style="max-height: 600px;">
                         <div class="card-body">
                             <p class="card-text" style="text-align: right;direction:  rtl;">{{ $post->body }}</p>
                             <div class="d-flex justify-content-between align-items-center">
@@ -62,7 +60,13 @@
 
                         <div class="card-footer" style="direction:  rtl;text-align:  right;">
                             <div class="media text-muted pt-3">
-                                <img src="{{asset('images/users/'.auth()->user()->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">
+
+                                @if( auth()->user()->avatar == 'default.jpg' )
+                                    <img src="{{asset('images/'.auth()->user()->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">
+                                @else
+                                    <img src="{{asset('images/users/'.auth()->user()->avatar)}}" alt="" class="col-sm-2 rounded" style="margin-top:  1%;margin-right: -3%; width: 50px;height: 50px;">
+                                @endif
+
                                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
                                     <div class="d-flex justify-content-between align-items-center w-100">
                                         <strong class="text-gray-dark">{{auth()->user()->name}}</strong>
@@ -71,7 +75,7 @@
                                         @csrf
                                         <input type="hidden" name="post_id" value="{{ $post->id }}">
                                         <div class="row">
-                                            <div class="col-md-10">
+                                            <div class="col-md-12">
                                                 <input type="text" name="comment" class="form-control" placeholder="{{ __('frontend.Add Comment') }}" style="width:  100%;">
                                                 @error('comment')<span class="text-danger">{{ $message }}</span>@enderror
                                             </div>
@@ -92,16 +96,17 @@
                                     @endif
                                     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
                                         <div class="d-flex justify-content-between align-items-center w-100">
-                                            <strong class="text-gray-dark">{{$comment->user->name}}</strong><br>
+                                            <strong class="text-gray-dark">{{$comment->user->username}}</strong><br>
                                             @if($comment->user->id == auth()->user()->id)
                                                 <form action="{{ route('comments.destroy', $comment->id) }}" method="post">
-                                                    {{ csrf_field() }}
-                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    @csrf
+                                                    @method('DELETE')
+
                                                     <input type="submit" class="btn btn-outline-danger" value="{{ __('frontend.Delete') }}">
                                                 </form>
                                             @endif
                                         </div>
-                                        <span class="d-block">{{$comment->comment}}</span>
+                                        <span class="text-body"><strong>{{ $comment->comment }}</strong></span>
                                     </div>
                                 </div>
                             @endforeach
@@ -110,7 +115,7 @@
                 </div>
             </div>
         </div>
-    </div>
+
 @endsection
 
 @section('script')

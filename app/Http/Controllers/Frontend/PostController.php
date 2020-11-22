@@ -13,7 +13,10 @@ class PostController extends Controller
 
     public function index()
     {
-        $posts = Post::with('user')->orderBy('id', 'desc')->paginate(5);
+        $posts = Post::withCount('likes')
+            ->whereIn('user_id', auth()->user()->following()->where('accepted', 1)
+            ->pluck('to_user_id'))
+            ->paginate(5);
         $active_home = "primary";
         return view('frontend.home', compact('posts', 'active_home'));
     }

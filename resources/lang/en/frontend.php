@@ -40,4 +40,5 @@ return [
     'Refuse Following' => 'Refuse Following',
     'Unfollow' => 'Unfollow',
     'Friends' => 'Friends',
+    'Show' => 'Show',
 ];

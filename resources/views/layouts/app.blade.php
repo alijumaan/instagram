@@ -20,9 +20,9 @@
     @yield('style')
 
 </head>
-<body class="bg-light">
-    <div class="container-fluid">
-        @include('partial.header')
+<body class="bg-dark">
+    @include('partial.header')
+    <div class="container">
         <main class="py-4">
             <div class="row justify-content-center">
                 <div class="col-md-10">
