@@ -6,7 +6,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="my-3 p-3 bg-white rounded box-shadow" style="direction:  rtl;text-align:  right;">
+                    <div class="my-3 p-3 bg-dark rounded box-shadow text-white" style="direction:  rtl;text-align:  right;">
                         <h6 class="border-bottom border-gray pb-2 mb-0">طلبات المتابعة</h6>
                         @foreach ($follow_requests as $request)
                             <div class="media text-muted pt-3">
@@ -42,7 +42,7 @@
                 </div>
                 <div class="row"> -->
                 <div class="col-md-6">
-                    <div class="my-3 p-3 bg-white rounded box-shadow" style="direction:  rtl;text-align:  right;">
+                    <div class="my-3 p-3 bg-dark rounded box-shadow text-white" style="direction:  rtl;text-align:  right;">
                         <h6 class="border-bottom border-gray pb-2 mb-0">{{ __('frontend.Friends') }}</h6>
                         @foreach ($followers as $follower)
 
@@ -58,7 +58,7 @@
 
                                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
                                     <div class="d-flex justify-content-between align-items-center w-100">
-                                        <a href="{{ url('users/'.$user->id.'/posts') }}"><strong class="text-dark">{{ $user->username}}</strong></a>
+                                        <a href="{{ url('user/'.$user->id.'/posts') }}"><strong class="text-white">{{ $user->username}}</strong></a>
                                         <form method="post" action="{{ route('followers.destroy', $follower->id) }}">
                                             @csrf
                                             @method('DELETE')

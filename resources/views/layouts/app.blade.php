@@ -15,8 +15,8 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/bootstrap-rtl.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-rtl.css') }}">
     @yield('style')
 
 </head>
@@ -35,13 +35,48 @@
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/alert-message.js') }}"></script>
+
+    <!-- Import typeahead.js -->
+    <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+
     <script>
-        $(function () {
-            $('#alert-message').fadeTo(2000, 500).slideUp(500, function () {
-                $('#alert-message').slideUp(500);
-            })
-        })
+        $(document).ready(function() {
+            let bloodhound = new Bloodhound({
+                datumTokenizer: Bloodhound.tokenizers.whitespace,
+                queryTokenizer: Bloodhound.tokenizers.whitespace,
+                remote: {
+                    url: '{{url("search")}}?searchName=%QUERY%',//'/user/find?q=%QUERY%',
+                    wildcard: '%QUERY%'
+                },
+            });
+
+            $('#search').typeahead({
+                hint: true,
+                highlight: true,
+                minLength: 1
+            }, {
+                name: 'users',
+                source: bloodhound,
+                limit: 10,
+                display: function(data) {
+                    return data.name  //Input value to be set when you select a suggestion.
+                },
+                templates: {
+                    empty: [
+                        '<div class="list-group search-results-dropdown"><div class="list-group-item" style="direction: rtl; text-align: right; ">لا يوجد نتائج بحث مطابقة</div></div>'
+                    ],
+                    header: [
+                        '<div class="list-group search-results-dropdown">'
+                    ],
+                    suggestion: function(data) {
+                        return '<div style="font-weight:normal;direction: rtl; text-align: right; width:100%" class="list-group-item"> <a href="{{url('user_info')}}/'+data.id+'"> <img src="{{asset('images/users')}}/'+data.avatar+'" style=" margin-left: 2%; " width="35px" height="35px"/>' + data.first_name+' '+data.last_name + '</a></div></div>'
+                    }
+                }
+            });
+        });
     </script>
+
     @yield('script')
 </body>
 </html>

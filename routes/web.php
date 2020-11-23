@@ -17,9 +17,12 @@ Route::group(['middleware' => ['auth']], function() {
     // USERS
     Route::resource('users', UserController::class)->only('index', 'update');
     Route::get('/user/profile', [UserController::class, 'edit'])->name('profile');
+    Route::get('/user_info/{id}', [UserController::class, 'userInfo'])->name('user.info');
+    Route::get('/search', [UserController::class, 'search']);
 
     // POSTS
     Route::resource('posts', PostController::class);
+    Route::get('/user/{id}/posts', [PostController::class, 'userFriendPosts'])->name('user.friend.posts');
 
     // LIKES
     Route::resource('likes', LikeController::class)->only('store', 'destroy');

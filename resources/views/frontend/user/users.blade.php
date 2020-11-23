@@ -5,7 +5,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <div class="my-3 p-3 bg-white rounded box-shadow" style="direction:  rtl;text-align:  right;">
+                    <div class="my-3 p-3 bg-dark rounded box-shadow text-white" style="direction:  rtl;text-align:  right;">
                         <h6 class="border-bottom border-gray pb-2 mb-0">{{ __('frontend.Users') }}</h6>
                         @forelse ($users as $user)
                             <div class="media text-muted pt-3">
@@ -16,7 +16,7 @@
                                 @endif
                                 <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
                                     <div class="d-flex justify-content-between align-items-center w-100">
-                                        <strong class="text-gray-dark">{{$user->username}}</strong>
+                                        <strong class="text-white">{{$user->username}}</strong>
                                         <form method="POST" action="{{ route('followers.store') }}">
                                             @csrf
                                             <input type="hidden" name="user_id" value="{{$user->id}}">
@@ -38,7 +38,7 @@
                 </div>
                 <div class="row"> -->
                 <div class="col-md-6">
-                    <div class="my-3 p-3 bg-white rounded box-shadow" style="direction:  rtl;text-align:  right;">
+                    <div class="my-3 p-3 bg-dark rounded box-shadow text-white" style="direction:  rtl;text-align:  right;">
                         <h6 class="border-bottom border-gray pb-2 mb-0">{{ __('frontend.Sent Requests') }}</h6>
                         @forelse ($requests as $request)
                             <div class="media text-muted pt-3">

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\PostRequest;
+use App\Models\Follower;
 use App\Models\Like;
 use App\Models\Post;
 use Illuminate\Support\Facades\File;
@@ -20,6 +21,26 @@ class PostController extends Controller
             ->paginate(9);
         $active_home = "primary";
         return view('frontend.home', compact('posts', 'active_home'));
+    }
+
+
+    public function userFriendPosts($id)
+    {
+        $is_follower = Follower::where(
+            [
+                'from_user_id' => auth()->user()->id,
+                'to_user_id' => $id,
+                'accepted' => 1
+            ])
+            ->get();
+        if (isset($is_follower[0])) {
+            $posts = Post::withCount('likes')
+                ->where('user_id', $id)
+                ->paginate(9);
+            return view('frontend.user.friend_posts', compact('posts'));
+        } else {
+            return redirect()->route('home');
+        }
     }
 
 
