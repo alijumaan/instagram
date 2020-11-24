@@ -26,19 +26,15 @@ class PostController extends Controller
 
     public function userFriendPosts($id)
     {
-        $is_follower = Follower::where(
-            [
-                'from_user_id' => auth()->user()->id,
-                'to_user_id' => $id,
-                'accepted' => 1
-            ])
-            ->get();
-        if (isset($is_follower[0])) {
+//        $is_follower = Follower::where(['from_user_id' => auth()->user()->id, 'to_user_id' => $id, 'accepted' => 1])->get();
+        if (policy(Post::class)->show_friend(auth()->user(), $id))
+        {
             $posts = Post::withCount('likes')
                 ->where('user_id', $id)
                 ->paginate(9);
             return view('frontend.user.friend_posts', compact('posts'));
-        } else {
+        }
+        else {
             return redirect()->route('home');
         }
     }
@@ -81,16 +77,25 @@ class PostController extends Controller
     public function show($id)
     {
         $post = Post::with('user')->findOrFail($id);
-        $count = Like::where('post_id', $id)->count();
-        $userLike = Like::where(['user_id'=> auth()->user()->id, 'post_id' => $id])->get();
-        return view('frontend.post.show', compact('post', 'count', 'userLike'));
+        $user = auth()->user();
+        if ($user->can('show', $post))
+        {
+            $count = Like::where('post_id', $id)->count();
+            $userLike = Like::where(['user_id'=> auth()->user()->id, 'post_id' => $id])->get();
+            return view('frontend.post.show', compact('post', 'count', 'userLike'));
+        }
+        else
+        {
+            return redirect('Not found');
+        }
     }
 
 
     public function edit($id)
     {
         $post = Post::whereId($id)->first();
-        if ($post->user_id == auth()->user()->id)
+//        if ($post->user_id == auth()->user()->id)
+        if (auth()->user()->can('update', $post))
         {
             return view('frontend.post.edit', compact('post'));
         } else {
@@ -103,7 +108,8 @@ class PostController extends Controller
     {
         $post = Post::whereId($id)->first();
 
-        if ($post->user_id == auth()->user()->id)
+//        if ($post->user_id == auth()->user()->id)
+        if (auth()->user()->can('update', $post))
         {
             $fileName = "";
             if ($request->hasFile('filename'))
@@ -142,7 +148,8 @@ class PostController extends Controller
     public function destroy($id)
     {
         $post = Post::whereId($id)->first();
-        if ($post->user_id == auth()->user()->id)
+//        if ($post->user_id == auth()->user()->id)
+        if (auth()->user()->can('delete', $post))
         {
             if ($post->delete())
             {

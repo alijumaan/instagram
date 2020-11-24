@@ -97,14 +97,16 @@
                                     <div class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray" >
                                         <div class="d-flex justify-content-between align-items-center w-100">
                                             <strong class="text-gray-dark">{{$comment->user->username}}</strong><br>
-                                            @if($comment->user->id == auth()->user()->id)
+{{--                                            @if($comment->user->id == auth()->user()->id)--}}
+                                            @can('delete', $comment)
                                                 <form action="{{ route('comments.destroy', $comment->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
 
                                                     <input type="submit" class="btn btn-outline-danger" value="{{ __('frontend.Delete') }}">
                                                 </form>
-                                            @endif
+                                            @endcan
+{{--                                            @endif--}}
                                         </div>
                                         <span class="text-body"><strong>{{ $comment->comment }}</strong></span>
                                     </div>

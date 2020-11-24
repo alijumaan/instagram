@@ -38,7 +38,7 @@
     <script src="{{ asset('assets/js/alert-message.js') }}"></script>
 
     <!-- Import typeahead.js -->
-    <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/typeahead.js/0.11.1/typeahead.bundle.min.js"></script>
 
     <script>
         $(document).ready(function() {

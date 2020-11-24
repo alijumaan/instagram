@@ -47,7 +47,7 @@ class UserController extends Controller
 
     public function search(Request $request)
     {
-        $results = array();
+//        $results = array();
         $item = $request->searchName;
         $data = User::where('first_name', 'LIKE', '%'.$item.'%')->orWhere('last_name', 'LIKE', '%'.$item.'%')
             ->take(5)
